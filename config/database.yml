@@ -22,4 +22,6 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: gym-track_production
+  username: gym-track
+  password: <%= ENV['GYM-TRACK_DATABASE_PASSWORD'] %>
