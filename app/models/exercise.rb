@@ -1,3 +1,6 @@
 class Exercise < ApplicationRecord
-  belongs_to :exercise_type
+  has_one :exercise_type
+
+  has_many :workouts, through: :workout_sets, dependent: :destroy
+  has_many :workout_sets
 end
