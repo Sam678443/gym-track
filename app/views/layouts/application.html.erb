@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GymTrack</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,14 +8,47 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <title>Gym Track</title>
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <p class="notice"><%= notice%></p>
-      <p class="alert"><%= alert%></p>
-      
-      <%= yield %>
+
+  <body>
+    <!-- Navbar is here -->
+    <nav class="bg-white shadow-lg">
+      <nav class="max-w-9xl mx-auto px-4">
+        <div class="flex justify-between"> 
+          <div class="flex space-x-7">
+          <!-- Website logo -->
+          <div>
+            <a href="#" class="flex items-center py-4 px-2">
+              <%= image_tag "Logo.jpg", height: 32, width: 32%>
+              <span class="font-semibold text-gray-500 text-lg">Gym Track</span>
+            </a>
+          </div>
+          <!-- Primary NavBar Items -->
+          <% if user_signed_in? %>
+          <div class="flex-shrink-0 flex-shrink-0">
+            <%= link_to 'Workouts', workouts_path %>
+            <%= link_to 'About Us', workouts_path %>
+          </div>
+          <% else %>
+            <div class="hidden md:flex items-center space-x-3 justify-end ">
+              <%= link_to 'Sign In', new_user_session_path, class: "py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"%>
+              <%= link_to 'Sign Up', new_user_registration_path, class: "py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-14">
+      <div class="flex w-full mx-auto px-6 py-8">
+        <main class="flex flex-col w-full h-full text-gray-900 text-xl min-h-screen">
+          <%= yield %>
+        </main>
+      </div>
     </main>
   </body>
 </html>
+
